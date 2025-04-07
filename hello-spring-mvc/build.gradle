@@ -33,8 +33,14 @@ dependencies {
 	
 	// 자동 재빌드
     implementation 'org.springframework.boot:spring-boot-devtools'
+    
+    // Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+tasks.withType(JavaCompile) {
+    options.compilerArgs += '-parameters'
 }
