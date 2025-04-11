@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.itemservice.domain.item.Item;
-import com.example.itemservice.domain.item.ItemRepository;
+import com.example.itemservice.domain.itemV1.ItemV1;
+import com.example.itemservice.domain.itemV1.ItemRepositoryV1;
 
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
@@ -25,18 +25,18 @@ public class BasicItemController {
 
     // final인 경우에는 생성자 주입이 필요하다
     // 필드 주입 불가!
-    private final ItemRepository itemRepository;
+    private final ItemRepositoryV1 itemRepository;
 
     // 근데 사실 @Controller, @Service, @Repository 같은 컴포넌트 클래스에는 생성자가 하나뿐이면 자동으로
     // @Autowired 없이도 주입해줌
     @Autowired // 따라서 생략 가능
-    public BasicItemController(ItemRepository itemRepository) {
+    public BasicItemController(ItemRepositoryV1 itemRepository) {
         this.itemRepository = itemRepository;
     }
 
     @GetMapping
     public String items(Model model) {
-        List<Item> items = itemRepository.findAll();
+        List<ItemV1> items = itemRepository.findAll();
         model.addAttribute("items", items);
         return "basic/items";
     }
@@ -123,8 +123,8 @@ public class BasicItemController {
      * RedirectAttributes로 값을 추가해줌
      */
     @PostMapping("/add")
-    public String addItemV6(Item item, RedirectAttributes redirectAttributes) {
-        Item savedItem = itemRepository.save(item);
+    public String addItemV6(ItemV1 item, RedirectAttributes redirectAttributes) {
+        ItemV1 savedItem = itemRepository.save(item);
         
         // redirect 주소의 itemId로 바로 들어갈 수 있음
         redirectAttributes.addAttribute("itemId", savedItem.getId());
@@ -169,7 +169,7 @@ public class BasicItemController {
 //    }
     
     @PostMapping("{itemId}/edit")
-    public String editItemV3(@PathVariable("itemId") long itemId, Item item) {
+    public String editItemV3(@PathVariable("itemId") long itemId, ItemV1 item) {
 
         itemRepository.update(itemId, item);
         return "redirect:/basic/items/{itemId}";
@@ -180,8 +180,8 @@ public class BasicItemController {
      */
     @PostConstruct
     public void init() {
-        itemRepository.save(new Item("ItemAA", 10000, 10));
-        itemRepository.save(new Item("ItemBB", 20000, 30));
+        itemRepository.save(new ItemV1("ItemAA", 10000, 10));
+        itemRepository.save(new ItemV1("ItemBB", 20000, 30));
     }
 
 }
