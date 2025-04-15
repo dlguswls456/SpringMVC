@@ -1,4 +1,4 @@
-package com.example.itemservice.domain.item;
+package com.example.itemservice.item.domain.item;
 
 import java.util.ArrayList;
 import java.util.HashMap;

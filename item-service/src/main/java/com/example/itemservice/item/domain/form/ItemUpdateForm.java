@@ -1,4 +1,4 @@
-package com.example.itemservice.domain.form;
+package com.example.itemservice.item.domain.form;
 
 import org.hibernate.validator.constraints.Range;
 

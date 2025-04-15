@@ -1,4 +1,4 @@
-package com.example.itemservice.web.validation;
+package com.example.itemservice.item.web.validation;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.itemservice.domain.item.Item;
-import com.example.itemservice.domain.item.ItemRepository;
+import com.example.itemservice.item.domain.item.Item;
+import com.example.itemservice.item.domain.item.ItemRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

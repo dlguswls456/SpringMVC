@@ -4,7 +4,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import com.example.itemservice.domain.item.Item;
+import com.example.itemservice.item.domain.item.Item;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;

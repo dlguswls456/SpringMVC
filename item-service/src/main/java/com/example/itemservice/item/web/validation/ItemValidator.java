@@ -1,11 +1,11 @@
-package com.example.itemservice.web.validation;
+package com.example.itemservice.item.web.validation;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.example.itemservice.domain.item.Item;
+import com.example.itemservice.item.domain.item.Item;
 
 
 @Component

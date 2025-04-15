@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
+import com.example.itemservice.item.domain.item.Item;
+import com.example.itemservice.item.domain.item.ItemRepository;
+
 
 public class ItemRepositoryTest {
 
