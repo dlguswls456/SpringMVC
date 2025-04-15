@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.itemservice.login.domain.member.Member;
 import com.example.itemservice.login.domain.member.MemberRepository;
+import com.example.itemservice.login.web.session.CustomSessionManager;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,10 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 
     private final MemberRepository memberRepository;
-//    private final SessionManager sessionManager;
+    private final CustomSessionManager sessionManager;
 
-    @GetMapping("/")
-    public String home(@CookieValue(name = "memberId", required = false) Long memberId, Model model) {
+//    @GetMapping("/")
+    public String cookieHome(@CookieValue(name = "memberId", required = false) Long memberId, Model model) {
 
         if(memberId == null) {
             return "login/home";
@@ -34,6 +36,19 @@ public class HomeController {
         }
 
         model.addAttribute("member", loginMember);
+        return "login/loginHome";
+
+    }
+
+    @GetMapping("/")
+    public String customSessionHome(HttpServletRequest request, Model model) {
+        Member member = (Member) sessionManager.getSession(request);
+        if(member == null) {
+            return "login/home";
+        }
+
+        // 로그인
+        model.addAttribute("member", member);
         return "login/loginHome";
 
     }
