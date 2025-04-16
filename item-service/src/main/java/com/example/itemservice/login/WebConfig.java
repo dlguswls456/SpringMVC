@@ -14,6 +14,7 @@ import com.example.itemservice.login.web.filter.LoginCheckFilter;
 import com.example.itemservice.login.web.interceptor.LogInterceptor;
 import com.example.itemservice.login.web.interceptor.LoginCheckInterceptor;
 
+import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
 
 
@@ -28,6 +29,10 @@ public class WebConfig implements WebMvcConfigurer {
         filterRegistrationBean.setFilter(new LogFilter());
         filterRegistrationBean.setOrder(1);
         filterRegistrationBean.addUrlPatterns("/*");
+        
+        // doFilter()가 ERROR 디스패치도 받을 수 있어짐!
+        filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
+
         return filterRegistrationBean;
     }
 
@@ -43,11 +48,15 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LogInterceptor()).order(1).addPathPatterns("/**").excludePathPatterns("/css/**",
-                                        "/*.ico", "/error");
+        registry.addInterceptor(new LogInterceptor())
+        .order(1)
+        .addPathPatterns("/**")
+        .excludePathPatterns("/css/**", "/*.ico", "/error");
 
-        registry.addInterceptor(new LoginCheckInterceptor()).order(2).addPathPatterns("/**").excludePathPatterns("/",
-                                        "/members/add", "/login", "/logout", "/css/**", "/*.ico", "/error");
+        registry.addInterceptor(new LoginCheckInterceptor())
+        .order(2)
+        .addPathPatterns("/**")
+        .excludePathPatterns("/", "/members/add", "/login", "/logout", "/css/**", "/*.ico", "/error", "/exception/**");
     }
 
     @Override

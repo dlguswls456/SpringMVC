@@ -24,6 +24,7 @@ public class LogFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         log.info("Log filter doFilter");
+        log.info("Dispatcher Type = {}", request.getDispatcherType());
         
         // down casting
         HttpServletRequest httpRequest = (HttpServletRequest) request;
