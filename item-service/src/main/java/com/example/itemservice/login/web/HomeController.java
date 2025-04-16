@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.itemservice.login.domain.member.Member;
 import com.example.itemservice.login.domain.member.MemberRepository;
+import com.example.itemservice.login.web.argumentresolver.Login;
 import com.example.itemservice.login.web.session.CustomSessionManager;
 import com.example.itemservice.login.web.session.SessionConst;
 
@@ -55,7 +56,7 @@ public class HomeController {
 
     }
 
-    @GetMapping("/")
+//    @GetMapping("/")
     public String sessionHome(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession(false);
         if(session == null) {
@@ -71,6 +72,18 @@ public class HomeController {
         // 로그인
         // 세션이 유지되면 로그인으로 이동
         model.addAttribute("member", member);
+        return "login/loginHome";
+    }
+
+    @GetMapping("/")
+    public String argumentResolverHome(@Login Member loginMember, Model model) {
+        // 세션에 회원 데이터가 없으면 home
+        if(loginMember == null) {
+            return "login/home";
+        }
+
+        // 세션이 유지되면 로그인으로 로그인으로 이동
+        model.addAttribute("member", loginMember);
         return "login/loginHome";
     }
 
