@@ -12,6 +12,21 @@ import com.example.itemservice.exception.exhandler.ErrorResult;
 import lombok.extern.slf4j.Slf4j;
 
 
+/**
+ * 
+// Target all Controllers annotated with @RestController
+@ControllerAdvice(annotations = RestController.class)
+public class ExampleAdvice1 {}
+
+// Target all Controllers within specific packages
+@ControllerAdvice("org.example.controllers")
+public class ExampleAdvice2 {}
+
+// Target all Controllers assignable to specific classes
+@ControllerAdvice(assignableTypes = {ControllerInterface.class,AbstractController.class})
+public class ExampleAdvice3 {}
+ */
+
 @Slf4j
 @RestControllerAdvice(basePackages = "com.example.itemservice.exception.api")
 public class ExControllerAdvice {
