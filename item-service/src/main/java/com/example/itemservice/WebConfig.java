@@ -17,10 +17,9 @@ import com.example.itemservice.login.web.filter.LogFilter;
 import com.example.itemservice.login.web.filter.LoginCheckFilter;
 import com.example.itemservice.login.web.interceptor.LogInterceptor;
 import com.example.itemservice.login.web.interceptor.LoginCheckInterceptor;
-import com.example.itemservice.typeconverter.converter.IntegerToStringConverter;
 import com.example.itemservice.typeconverter.converter.IpPortToStringConverter;
-import com.example.itemservice.typeconverter.converter.StringToIntegerConverter;
 import com.example.itemservice.typeconverter.converter.StringToIpPortConverter;
+import com.example.itemservice.typeconverter.formatter.MyNumberFormatter;
 
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
@@ -78,10 +77,13 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         // 컨버터 등록
-        registry.addConverter(new StringToIntegerConverter());
-        registry.addConverter(new IntegerToStringConverter());
+        // 우선순위를 위한 주석처리
+//        registry.addConverter(new StringToIntegerConverter());
+//        registry.addConverter(new IntegerToStringConverter());
         registry.addConverter(new StringToIpPortConverter());
         registry.addConverter(new IpPortToStringConverter());
+
+        registry.addFormatter(new MyNumberFormatter());
     }
 
 }
