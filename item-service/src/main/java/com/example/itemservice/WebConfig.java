@@ -1,9 +1,10 @@
-package com.example.itemservice.login;
+package com.example.itemservice;
 
 import java.util.List;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -16,6 +17,10 @@ import com.example.itemservice.login.web.filter.LogFilter;
 import com.example.itemservice.login.web.filter.LoginCheckFilter;
 import com.example.itemservice.login.web.interceptor.LogInterceptor;
 import com.example.itemservice.login.web.interceptor.LoginCheckInterceptor;
+import com.example.itemservice.typeconverter.converter.IntegerToStringConverter;
+import com.example.itemservice.typeconverter.converter.IpPortToStringConverter;
+import com.example.itemservice.typeconverter.converter.StringToIntegerConverter;
+import com.example.itemservice.typeconverter.converter.StringToIpPortConverter;
 
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.Filter;
@@ -56,7 +61,7 @@ public class WebConfig implements WebMvcConfigurer {
 
         registry.addInterceptor(new LoginCheckInterceptor()).order(2).addPathPatterns("/**").excludePathPatterns("/",
                                         "/members/add", "/login", "/logout", "/css/**", "/*.ico", "/error",
-                                        "/exception/**");
+                                        "/exception/**", "/converter/**");
     }
 
     @Override
@@ -68,6 +73,15 @@ public class WebConfig implements WebMvcConfigurer {
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
         resolvers.add(new MyHandlerExceptionResolver());
         resolvers.add(new UserHandlerExceptionResolver());
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        // 컨버터 등록
+        registry.addConverter(new StringToIntegerConverter());
+        registry.addConverter(new IntegerToStringConverter());
+        registry.addConverter(new StringToIpPortConverter());
+        registry.addConverter(new IpPortToStringConverter());
     }
 
 }
