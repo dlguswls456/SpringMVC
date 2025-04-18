@@ -22,7 +22,7 @@ public class DBConnectionUtil {
 
             return connection;
         } catch (SQLException e) {
-            log.info("error={}", e);
+            log.info("connection error", e);
             throw new IllegalStateException();
         }
     }
