@@ -1,4 +1,4 @@
-package com.example.itemservice;
+package com.example.springdb1.connection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

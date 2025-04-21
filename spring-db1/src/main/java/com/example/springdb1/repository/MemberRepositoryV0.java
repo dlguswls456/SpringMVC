@@ -1,4 +1,4 @@
-package com.example.springdb1.domain;
+package com.example.springdb1.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.NoSuchElementException;
 
 import com.example.springdb1.DBConnectionUtil;
+import com.example.springdb1.domain.Member;
 
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,4 +1,4 @@
-package com.example.itemservice;
+package com.example.springdb1.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 import org.junit.jupiter.api.Test;
 
 import com.example.springdb1.domain.Member;
-import com.example.springdb1.domain.MemberRepositoryV0;
+import com.example.springdb1.repository.MemberRepositoryV0;
 
 import lombok.extern.slf4j.Slf4j;
 
