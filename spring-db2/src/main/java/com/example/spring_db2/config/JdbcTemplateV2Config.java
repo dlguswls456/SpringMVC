@@ -5,7 +5,7 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 
 import com.example.spring_db2.repository.ItemRepository;
-import com.example.spring_db2.repository.JdbcTemplateItemRepositoryV2;
+import com.example.spring_db2.repository.jdbctemplate.JdbcTemplateItemRepositoryV2;
 import com.example.spring_db2.service.ItemService;
 import com.example.spring_db2.service.ItemServiceV1;
 

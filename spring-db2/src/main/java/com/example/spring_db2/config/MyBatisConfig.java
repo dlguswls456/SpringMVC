@@ -1,22 +1,24 @@
 package com.example.spring_db2.config;
 
-import javax.sql.DataSource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import com.example.spring_db2.repository.ItemRepository;
-import com.example.spring_db2.repository.jdbctemplate.JdbcTemplateItemRepositoryV3;
+import com.example.spring_db2.repository.mybatis.ItemMapper;
+import com.example.spring_db2.repository.mybatis.MyBatisItemRepository;
 import com.example.spring_db2.service.ItemService;
 import com.example.spring_db2.service.ItemServiceV1;
 
 import lombok.RequiredArgsConstructor;
 
 
-//@Configuration
+@Configuration
 @RequiredArgsConstructor
-public class JdbcTemplateV3Config {
+public class MyBatisConfig {
 
-    private final DataSource dataSource;
+    @Autowired
+    private final ItemMapper itemMapper;
 
     @Bean
     public ItemService itemService() {
@@ -25,7 +27,7 @@ public class JdbcTemplateV3Config {
 
     @Bean
     public ItemRepository itemRepository() {
-        return new JdbcTemplateItemRepositoryV3(dataSource);
+        return new MyBatisItemRepository(itemMapper);
     }
 
 }

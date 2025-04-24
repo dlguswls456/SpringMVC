@@ -1,4 +1,4 @@
-package com.example.spring_db2.repository;
+package com.example.spring_db2.repository.jdbctemplate;
 
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 import com.example.spring_db2.domain.Item;
 import com.example.spring_db2.domain.ItemSearchCond;
 import com.example.spring_db2.domain.ItemUpdateDto;
+import com.example.spring_db2.repository.ItemRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
