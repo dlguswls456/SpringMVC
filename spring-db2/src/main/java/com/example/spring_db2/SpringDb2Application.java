@@ -2,14 +2,15 @@ package com.example.spring_db2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Profile;
 
-import com.example.spring_db2.repository.ItemRepository;
+import com.example.spring_db2.config.JdbcTemplateV3Config;
 
 
-@Import(MemoryConfig.class)
+//@Import(MemoryConfig.class)
+//@Import(JdbcTemplateV1Config.class)
+//@Import(JdbcTemplateV2Config.class)
+@Import(JdbcTemplateV3Config.class)
 @SpringBootApplication(scanBasePackages = "com.example.spring_db2")
 public class SpringDb2Application {
 
@@ -17,10 +18,10 @@ public class SpringDb2Application {
         SpringApplication.run(SpringDb2Application.class, args);
     }
 
-    @Bean
-    @Profile("local")
-    public TestDataInit testDataInit(ItemRepository itemRepository) {
-        return new TestDataInit(itemRepository);
-    }
+//    @Bean
+//    @Profile("local")
+//    public TestDataInit testDataInit(ItemRepository itemRepository) {
+//        return new TestDataInit(itemRepository);
+//    }
 
 }

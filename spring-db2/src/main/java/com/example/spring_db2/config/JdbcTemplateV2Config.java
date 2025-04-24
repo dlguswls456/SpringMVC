@@ -1,16 +1,22 @@
-package com.example.spring_db2;
+package com.example.spring_db2.config;
+
+import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import com.example.spring_db2.repository.ItemRepository;
-import com.example.spring_db2.repository.MemoryItemRepository;
+import com.example.spring_db2.repository.JdbcTemplateItemRepositoryV2;
 import com.example.spring_db2.service.ItemService;
 import com.example.spring_db2.service.ItemServiceV1;
 
+import lombok.RequiredArgsConstructor;
 
-@Configuration
-public class MemoryConfig {
+
+//@Configuration
+@RequiredArgsConstructor
+public class JdbcTemplateV2Config {
+
+    private final DataSource dataSource;
 
     @Bean
     public ItemService itemService() {
@@ -19,7 +25,7 @@ public class MemoryConfig {
 
     @Bean
     public ItemRepository itemRepository() {
-        return new MemoryItemRepository();
+        return new JdbcTemplateItemRepositoryV2(dataSource);
     }
 
 }
