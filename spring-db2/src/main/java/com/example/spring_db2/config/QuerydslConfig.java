@@ -1,7 +1,6 @@
 package com.example.spring_db2.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import com.example.spring_db2.repository.ItemRepository;
 import com.example.spring_db2.repository.jpa.JpaItemRepositoryV3;
@@ -12,7 +11,7 @@ import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 
 
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class QuerydslConfig {
 
