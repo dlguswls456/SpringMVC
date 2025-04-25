@@ -13,7 +13,9 @@ import com.example.spring_db2.domain.Item;
 import com.example.spring_db2.domain.ItemSearchCond;
 import com.example.spring_db2.domain.ItemUpdateDto;
 
+import jakarta.transaction.Transactional;
 
+@Transactional
 @SpringBootTest
 public class ItemRepositoryTest {
 
