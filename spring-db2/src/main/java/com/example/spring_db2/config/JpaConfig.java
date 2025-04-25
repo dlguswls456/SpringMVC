@@ -1,23 +1,24 @@
 package com.example.spring_db2.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import com.example.spring_db2.repository.ItemRepository;
-import com.example.spring_db2.repository.mybatis.ItemMapper;
-import com.example.spring_db2.repository.mybatis.MyBatisItemRepository;
+import com.example.spring_db2.repository.jpa.JpaItemRepositoryV1;
 import com.example.spring_db2.service.ItemService;
 import com.example.spring_db2.service.ItemServiceV1;
 
-import lombok.RequiredArgsConstructor;
+import jakarta.persistence.EntityManager;
 
 
-//@Configuration
-@RequiredArgsConstructor
-public class MyBatisConfig {
+@Configuration
+public class JpaConfig {
 
-    @Autowired
-    private final ItemMapper itemMapper;
+    private final EntityManager em;
+
+    public JpaConfig(EntityManager em) {
+        this.em = em;
+    }
 
     @Bean
     public ItemService itemService() {
@@ -26,7 +27,7 @@ public class MyBatisConfig {
 
     @Bean
     public ItemRepository itemRepository() {
-        return new MyBatisItemRepository(itemMapper);
+        return new JpaItemRepositoryV1(em);
     }
 
 }
