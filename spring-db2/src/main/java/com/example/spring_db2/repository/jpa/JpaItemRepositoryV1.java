@@ -31,7 +31,7 @@ public class JpaItemRepositoryV1 implements ItemRepository {
     @Override
     public Item save(Item item) {
         em.persist(item);
-        return null;
+        return item;
     }
 
     @Override

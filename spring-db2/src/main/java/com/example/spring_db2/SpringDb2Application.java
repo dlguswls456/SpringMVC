@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 
-import com.example.spring_db2.config.JpaConfig;
+import com.example.spring_db2.config.SpringDataJpaConfig;
 
 
 //@Import(MemoryConfig.class)
@@ -12,7 +12,8 @@ import com.example.spring_db2.config.JpaConfig;
 //@Import(JdbcTemplateV2Config.class)
 //@Import(JdbcTemplateV3Config.class)
 //@Import(MyBatisConfig.class)
-@Import(JpaConfig.class)
+//@Import(JpaConfig.class)
+@Import(SpringDataJpaConfig.class)
 @SpringBootApplication(scanBasePackages = "com.example.spring_db2")
 public class SpringDb2Application {
 
