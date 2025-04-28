@@ -3,7 +3,6 @@ package com.example.spring_db2.transaction;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,7 @@ public class MemberRepository {
 
     private final EntityManager em;
 
-    @Transactional
+//    @Transactional
     public void save(Member member) {
         log.info("member 저장");
         em.persist(member);
