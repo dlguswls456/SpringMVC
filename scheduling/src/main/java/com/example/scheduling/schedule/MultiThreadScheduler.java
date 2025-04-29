@@ -1,4 +1,4 @@
-package com.example.scheduling;
+package com.example.scheduling.schedule;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

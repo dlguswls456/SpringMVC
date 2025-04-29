@@ -1,4 +1,4 @@
-package com.example.scheduling;
+package com.example.scheduling.schedule;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
