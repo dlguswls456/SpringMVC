@@ -3,6 +3,7 @@ package com.example.spring_db2.transaction;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.persistence.EntityManager;
@@ -20,7 +21,8 @@ public class LogRepository {
 
     private final EntityManager em;
 
-    @Transactional
+//    @Transactional
+    @Transactional(propagation = Propagation.REQUIRES_NEW) // 로그와 관련된 물리 트랜잭션을 별도로 분리
     public void save(Log logMessage) {
         log.info("log 저장");
         em.persist(logMessage);
