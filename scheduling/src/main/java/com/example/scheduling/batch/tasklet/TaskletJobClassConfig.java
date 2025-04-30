@@ -1,4 +1,4 @@
-package com.example.scheduling.batch;
+package com.example.scheduling.batch.tasklet;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -6,36 +6,35 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
-import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * 단일 Step
- */
+
 @Slf4j
-//@Configuration
 @EnableBatchProcessing
 @RequiredArgsConstructor
-public class SingleStepJobConfig {
+@Configuration
+public class TaskletJobClassConfig {
 
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
-
+    
     @Bean
-    public Job exampleJob() {
-        return new JobBuilder("exampleJob", jobRepository).start(step()).build();
+    public Job taskletJob() {
+        return new JobBuilder("taskletJpb", jobRepository)
+                                        .start(taskStep())
+                                        .build();
     }
-
+    
     @Bean
-    public Step step() {
-        return new StepBuilder("step", jobRepository).tasklet((contribution, chunkContext) -> {
-            log.info("Step!");
-            return RepeatStatus.FINISHED;
-        }, transactionManager).build();
+    public Step taskStep() {
+        return new StepBuilder("taskletStep", jobRepository)
+                                        .tasklet(new BusinessTasklet(), transactionManager)
+                                        .build();
     }
 
 }

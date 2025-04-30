@@ -3,7 +3,6 @@ package com.example.scheduling.schedule;
 import java.time.LocalDateTime;
 
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +28,7 @@ public class SingleThreadScheduler {
 
     // 비동기로 스케줄링 하는 방법
     @Async
-    @Scheduled(fixedRate = 1000)
+//    @Scheduled(fixedRate = 1000)
     public void fixedRateAsync() throws InterruptedException {
         log.info("fixedRate Scheduler Error Started " + LocalDateTime.now());
         Thread.sleep(3000);
