@@ -13,7 +13,7 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.example.scheduling.batch.domain.Member;
+import com.example.scheduling.batch.domain.Account;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,9 +27,9 @@ public class StepConfig {
 
     private final JobRepository jobRepository;
     private final PlatformTransactionManager transactionManager;
-    private final ItemReader<Member> reader;
-    private final ItemProcessor<Member, Member> processor;
-    private final ItemWriter<Member> writer;
+    private final ItemReader<Account> reader;
+    private final ItemProcessor<Account, Account> processor;
+    private final ItemWriter<Account> writer;
 
     /**
      * startLimit은 해당 Step의 실패 이후 재시작 가능 횟수를 의미
@@ -40,7 +40,7 @@ public class StepConfig {
     public Step startLimit() {
         return new StepBuilder("startLimitStep", jobRepository)
                                         .startLimit(3)
-                                        .<Member, Member>chunk(10, transactionManager)
+                                        .<Account, Account>chunk(10, transactionManager)
                                         .reader(reader)
                                         .processor(processor)
                                         .writer(writer)
@@ -57,7 +57,7 @@ public class StepConfig {
     @JobScope
     public Step skip() {
         return new StepBuilder("skipStep", jobRepository)
-                                        .<Member, Member>chunk(10, transactionManager)
+                                        .<Account, Account>chunk(10, transactionManager)
                                         .reader(reader)
                                         .processor(processor)
                                         .writer(writer)
@@ -79,7 +79,7 @@ public class StepConfig {
     @JobScope
     public Step retry() {
         return new StepBuilder("retryStep", jobRepository)
-                                        .<Member, Member>chunk(10, transactionManager)
+                                        .<Account, Account>chunk(10, transactionManager)
                                         .reader(reader)
                                         .processor(processor)
                                         .writer(writer)
@@ -101,7 +101,7 @@ public class StepConfig {
     @JobScope
     public Step noRollback() {
         return new StepBuilder("noRollbackStep", jobRepository)
-                                        .<Member, Member>chunk(10, transactionManager)
+                                        .<Account, Account>chunk(10, transactionManager)
                                         .reader(reader)
                                         .processor(processor)
                                         .writer(writer)

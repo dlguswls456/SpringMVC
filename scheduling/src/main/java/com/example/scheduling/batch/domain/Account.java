@@ -4,16 +4,17 @@ import lombok.Data;
 
 
 @Data
-public class Member {
+public class Account {
 
+    private int id;
     private String memberId;
     private int money;
 
-    public Member() {
+    public Account() {
 
     }
 
-    public Member(String memberId, int money) {
+    public Account(String memberId, int money) {
         this.memberId = memberId;
         this.money = money;
     }
