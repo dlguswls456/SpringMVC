@@ -3,9 +3,6 @@ package com.example.scheduling.aop;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
-
-import com.example.scheduling.aop.aspect.AspectV4;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 //@Import(AspectV1.class)
 //@Import(AspectV2.class)
 //@Import(AspectV3.class)
-@Import(AspectV4.class)
+//@Import(AspectV4.class)
 public class AopTest {
 
     @Autowired
