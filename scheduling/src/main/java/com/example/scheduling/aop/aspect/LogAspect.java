@@ -4,7 +4,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Aspect
 @Order(1)
-@Component
+//@Component
 public class LogAspect {
 
     @Around("com.example.scheduling.aop.pointcuts.Pointcuts.allOrder()")
