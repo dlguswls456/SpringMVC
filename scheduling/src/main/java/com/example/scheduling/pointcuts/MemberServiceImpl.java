@@ -2,7 +2,7 @@ package com.example.scheduling.pointcuts;
 
 import org.springframework.stereotype.Component;
 
-
+@ClassAop
 @Component
 public class MemberServiceImpl implements MemberService {
 
